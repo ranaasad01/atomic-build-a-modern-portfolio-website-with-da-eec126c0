@@ -23,790 +23,640 @@ import {
 // ─── Inline data ────────────────────────────────────────────────────────────
 
 const skills = [
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"], icon: <Layers size={20} /> },
-  { category: "Backend", items: ["Node.js", "PostgreSQL", "Prisma", "REST APIs", "GraphQL"], icon: <Terminal size={20} /> },
-  { category: "Tooling", items: ["Git", "Docker", "Vercel", "Figma", "CI/CD"], icon: <Zap size={20} /> },
-  { category: "Principles", items: ["Accessible UI", "Performance", "Clean Code", "System Design", "Agile"], icon: <Star size={20} /> },
+  { category: "Test Automation", items: ["Selenium WebDriver", "Cypress", "Playwright", "Appium", "TestNG"], icon: <Terminal size={20} /> },
+  { category: "Manual Testing", items: ["Test Case Design", "Exploratory Testing", "Regression Testing", "UAT", "Bug Reporting"], icon: <CheckCircle size={20} /> },
+  { category: "API & Performance", items: ["Postman", "REST Assured", "JMeter", "k6", "Swagger"], icon: <Activity size={20} /> },
+  { category: "Tools & Practices", items: ["JIRA", "Git", "Jenkins", "Docker", "Agile/Scrum"], icon: <Zap size={20} /> },
 ];
 
 const projects = [
   {
-    title: "Orbit Dashboard",
-    description: "A real-time analytics platform for SaaS teams. Built with Next.js, Recharts, and a Postgres backend. Handles 50k+ events per day with sub-100ms query times.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Recharts"],
-    image: "https://support.bostondynamics.com/servlet/rtaImage?eid=ka0US0000008SAP&feoid=00N6g00000RYCWq&refid=0EMUS00000MNQ5D",
+    title: "E-Commerce Test Suite",
+    description: "End-to-end automation framework for a large e-commerce platform using Cypress. Covers 300+ test cases including checkout flows, payment gateways, and user authentication with 95% coverage.",
+    tags: ["Cypress", "JavaScript", "CI/CD", "GitHub Actions"],
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop",
     href: "https://github.com",
-    live: "https://example.com",
+    live: null,
     featured: true,
   },
   {
-    title: "Forma Design System",
-    description: "An open-source component library with 40+ accessible, themeable components. Used by 200+ developers on GitHub.",
-    tags: ["React", "Storybook", "Radix UI", "Tailwind"],
-    image: "https://jf-mm.com/wp-content/webpc-passthru.php?src=https://jf-mm.com/wp-content/uploads/2020/03/FORMA-1200x858.png&nocache=1",
+    title: "API Automation Framework",
+    description: "Comprehensive REST API testing framework built with Postman and Newman. Includes 150+ test scenarios, automated reporting, and integration with Jenkins for continuous testing.",
+    tags: ["Postman", "Newman", "Jenkins", "REST APIs"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop",
     href: "https://github.com",
-    live: "https://example.com",
+    live: null,
     featured: true,
   },
   {
-    title: "Pulse API Gateway",
-    description: "A lightweight API gateway with rate limiting, JWT auth, and request logging. Deployed on Docker with zero-downtime rolling updates.",
-    tags: ["Node.js", "Docker", "Redis", "JWT"],
-    image: "https://cdn.chipkin.com/assets/uploads/2017/mar/10-13-04-59_CAS2700-53%20Pulse%20Gateway%20Connection%20Diagram.jpg",
+    title: "Mobile App QA Pipeline",
+    description: "Automated mobile testing pipeline for Android and iOS apps using Appium. Integrated with BrowserStack for cross-device testing and real-time reporting dashboards.",
+    tags: ["Appium", "BrowserStack", "Python", "Pytest"],
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop",
     href: "https://github.com",
     live: null,
     featured: false,
   },
   {
-    title: "Cartographer",
-    description: "An interactive map-based travel journal. Users pin locations, attach photos, and share itineraries. Built with Mapbox GL and Supabase.",
-    tags: ["React", "Mapbox", "Supabase", "Cloudinary"],
-    image: "https://cdn.thecollector.com/wp-content/uploads/2024/06/famous-cartographers-know-about.jpg",
+    title: "Performance Testing Suite",
+    description: "Load and stress testing framework using JMeter and k6 for a high-traffic SaaS platform. Identified critical bottlenecks that improved response times by 40%.",
+    tags: ["JMeter", "k6", "Performance", "Grafana"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
     href: "https://github.com",
-    live: "https://example.com",
+    live: null,
     featured: false,
   },
 ];
 
 const experience = [
   {
-    role: "Senior Frontend Engineer",
-    company: "Vercel",
+    role: "Senior SQA Engineer",
+    company: "TechCorp Solutions",
     period: "2022 — Present",
-    description: "Lead the design system team, shipping accessible components used across vercel.com and the dashboard. Reduced bundle size by 34% through code-splitting and tree-shaking initiatives.",
-    highlights: ["Design system ownership", "34% bundle reduction", "Mentored 4 junior engineers"],
+    description: "Lead QA efforts for a suite of enterprise SaaS products. Built and maintained Cypress automation framework from scratch, reducing regression testing time by 60%. Mentored junior QA engineers and established QA best practices across 3 product teams.",
+    tags: ["Cypress", "CI/CD", "Team Lead", "Agile"],
   },
   {
-    role: "Full-Stack Developer",
-    company: "Linear",
-    period: "2020 — 2022",
-    description: "Built core product features including the notification system, keyboard shortcut engine, and real-time collaboration layer using CRDTs.",
-    highlights: ["Real-time collaboration", "Keyboard shortcut engine", "CRDT implementation"],
+    role: "SQA Engineer",
+    company: "Digital Ventures Ltd.",
+    period: "2021 — 2022",
+    description: "Performed manual and automated testing for web and mobile applications. Developed API test suites using Postman and REST Assured. Collaborated with developers to integrate automated tests into the CI/CD pipeline using Jenkins.",
+    tags: ["Selenium", "Postman", "Jenkins", "Mobile Testing"],
   },
   {
-    role: "Frontend Developer",
-    company: "Framer",
-    period: "2018 — 2020",
-    description: "Developed interactive prototyping tools and contributed to the canvas rendering engine. Shipped the component variants feature used by 100k+ designers.",
-    highlights: ["Canvas rendering", "Component variants", "100k+ users impacted"],
+    role: "Junior QA Analyst",
+    company: "Startup Hub",
+    period: "2020 — 2021",
+    description: "Executed manual test cases for web applications, reported and tracked bugs in JIRA. Assisted in writing test plans and test strategies. Gained hands-on experience with exploratory testing and UAT coordination.",
+    tags: ["Manual Testing", "JIRA", "UAT", "Test Planning"],
   },
 ];
 
-const testimonials = [
-  {
-    quote: "Alex shipped our entire design system in 6 weeks. The quality and attention to accessibility was beyond what we expected.",
-    author: "Sarah Chen",
-    role: "Head of Product, Orbit",
-    avatar: "https://cdn.tatlerasia.com/tatlerasia/i/2023/10/18163147-untitled-design-4_cover_1600x938.jpg",
-  },
-  {
-    quote: "One of the sharpest engineers I've worked with. Alex has a rare ability to bridge design intent and technical execution perfectly.",
-    author: "Marcus Webb",
-    role: "CTO, Linear",
-    avatar: "https://www.twincities.com/wp-content/uploads/2015/10/wpid-20130812__1-jmarcus-webb.jpg?w=1600&resize=1600,900",
-  },
-  {
-    quote: "The API gateway Alex built handles our entire production traffic. Reliable, fast, and beautifully documented.",
-    author: "Priya Nair",
-    role: "Engineering Lead, Pulse",
-    avatar: "https://images.ctfassets.net/vztl6s0hp3ro/26BxtJGxXUMSWAQfPZfbVC/3838688bab3369fc3e6ee9bf9629a427/The-entry-level-listing-asking-for_-3-plus-years-of-experience.jpg",
-  },
-];
+// ─── Animated words ──────────────────────────────────────────────────────────
+const ANIMATED_WORDS = ["Quality", "Reliability", "Precision", "Excellence", "Confidence"];
 
-const stats = [
-  { value: "6+", label: "Years of experience" },
-  { value: "40+", label: "Projects shipped" },
-  { value: "12", label: "Open-source packages" },
-  { value: "200k+", label: "Users reached" },
-];
+function AnimatedWord() {
+  const [index, setIndex] = useState(0);
+  const shouldReduce = useReducedMotion();
 
-const iconMap: Record<string, React.ReactNode> = {
-  Github: <Github size={18} />,
-  Linkedin: <Linkedin size={18} />,
-  Twitter: <Twitter size={18} />,
-  Mail: <Mail size={18} />,
-};
+  useState(() => {
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % ANIMATED_WORDS.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  });
 
-// ─── Contact form state type ─────────────────────────────────────────────────
-
-type FormState = {
-  name: string;
-  email: string;
-  message: string;
-};
-
-// ─── Page component ──────────────────────────────────────────────────────────
-
-export default function HomePage() {
-  const shouldReduceMotion = useReducedMotion();
-
-  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  if (shouldReduce) {
+    return <span className="text-purple-400">{ANIMATED_WORDS[0]}</span>;
   }
+
+  return (
+    <motion.span
+      key={index}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -16 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="text-purple-400 inline-block"
+    >
+      {ANIMATED_WORDS[index]}
+    </motion.span>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+export default function Home() {
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitted(true);
+    setFormState({ name: "", email: "", message: "" });
   }
 
-  const motionProps = shouldReduceMotion
-    ? {}
-    : { variants: fadeInUp, initial: "hidden", whileInView: "visible", viewport: { once: true, margin: "-80px" } };
-
   return (
-    <main className="bg-[#0a0a0a] text-white overflow-x-hidden">
-
+    <main className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-16 pb-24 px-6">
-        {/* Background glow */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-600/8 rounded-full blur-[100px]" />
-          {/* Subtle grid */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
-          />
+      <section
+        id="home"
+        className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden"
+      >
+        {/* Background glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/8 rounded-full blur-[100px]" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left: copy */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col gap-6"
-            >
-              <motion.div variants={shouldReduceMotion ? undefined : fadeInUp}>
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold tracking-widest uppercase">
-                  <Sparkles size={12} />
-                  Available for new projects
-                </span>
-              </motion.div>
+        {/* Grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-              <motion.h1
-                variants={shouldReduceMotion ? undefined : fadeInUp}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance leading-[1.05]"
-              >
-                Hi, I&apos;m{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                  {APP_NAME}
-                </span>
-              </motion.h1>
-
-              <motion.p
-                variants={shouldReduceMotion ? undefined : fadeInUp}
-                className="text-lg md:text-xl text-white/60 leading-relaxed max-w-lg text-pretty"
-              >
-                {APP_DESCRIPTION} I care deeply about performance, accessibility, and the craft of building things that last.
-              </motion.p>
-
-              <motion.div
-                variants={shouldReduceMotion ? undefined : fadeInUp}
-                className="flex flex-wrap gap-3 pt-2"
-              >
-                <Link
-                  href={CTA_PRIMARY.href}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 shadow-[0_0_24px_rgba(147,51,234,0.3)] hover:shadow-[0_0_32px_rgba(147,51,234,0.5)] hover:-translate-y-0.5"
-                >
-                  {CTA_PRIMARY.label}
-                  <ArrowRight size={16} />
-                </Link>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white/80 hover:text-white font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  Get in touch
-                </a>
-              </motion.div>
-
-              <motion.div
-                variants={shouldReduceMotion ? undefined : fadeInUp}
-                className="flex items-center gap-4 pt-2"
-              >
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="text-white/30 hover:text-purple-400 transition-colors duration-200"
-                  >
-                    {iconMap[s.icon]}
-                  </a>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* Right: avatar + stats */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : slideInRight}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col items-center gap-8"
-            >
-              {/* Avatar card */}
-              <div className="relative">
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-purple-500/30 to-indigo-500/20 blur-sm" />
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]">
-                  <img
-                    src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/eec126c0-fca6-47ac-ae1a-92114c9f4a62/images/uploaded-1782735678972-ahyzsl.png?v=1782735679010"
-                    alt="Alex Rivera, Creative Developer"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-2 bg-[#0a0a0a]/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-xs text-white/70 font-medium">Open to opportunities</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stats row */}
-              <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="bg-white/[0.03] border border-white/8 rounded-xl p-4 text-center hover:bg-white/[0.06] transition-colors duration-200"
-                  >
-                    <p className="text-2xl font-bold text-white tracking-tight">{stat.value}</p>
-                    <p className="text-xs text-white/40 mt-0.5 leading-snug">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Scroll cue */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/20"
-          >
-            <span className="text-[10px] tracking-widest uppercase">Scroll</span>
-            <ArrowDown size={14} className="animate-bounce" />
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 max-w-4xl mx-auto text-center"
+        >
+          {/* Badge */}
+          <motion.div variants={fadeInUp} className="mb-8">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium">
+              <Sparkles size={14} />
+              Available for new opportunities
+            </span>
           </motion.div>
-        </div>
+
+          {/* Headline */}
+          <motion.h1
+            variants={fadeInUp}
+            className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6"
+          >
+            Rao Ali
+            <br />
+            <span className="text-white/20">—</span>{" "}
+            <AnimatedWord />
+          </motion.h1>
+
+          {/* Tagline */}
+          <motion.p
+            variants={fadeInUp}
+            className="text-lg sm:text-xl text-purple-300 font-medium tracking-wide mb-6"
+          >
+            SQA Engineer
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            variants={fadeInUp}
+            className="text-base sm:text-lg text-white/50 max-w-2xl mx-auto leading-relaxed mb-10"
+          >
+            I ensure software works flawlessly — from manual exploratory testing to full automation frameworks. I bridge the gap between development and delivery with rigorous QA practices.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
+            <Link
+              href="#projects"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-purple-900/30"
+            >
+              View My Work
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+            </Link>
+            <Link
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 text-white/70 hover:text-white font-semibold transition-all duration-200"
+            >
+              Get In Touch
+            </Link>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            variants={fadeInUp}
+            className="grid grid-cols-3 gap-6 max-w-lg mx-auto"
+          >
+            {[
+              { value: "200+", label: "Test Cases" },
+              { value: "15+", label: "Projects" },
+              { value: "3+", label: "Years Exp" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-white">{stat.value}</p>
+                <p className="text-xs text-white/40 mt-1 tracking-wide">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+        >
+          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          >
+            <ArrowDown size={16} />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ── ABOUT ────────────────────────────────────────────────────────── */}
-      <section id="about" className="py-24 md:py-32 px-6 bg-[#0d0d0d]">
+      <section id="about" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left: image / visual */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : slideInLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden border border-white/8 shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
-                <img
-                  src="https://img.a.transfermarkt.technology/portrait/big/27523-1763050290.jpg?lm=1"
-                  alt="Alex's workspace"
-                  className="w-full h-80 object-cover"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = "none";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/80 via-transparent to-transparent" />
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          >
+            {/* Text */}
+            <motion.div variants={slideInLeft}>
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">
+                About Me
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">
+                About Me
+              </h2>
+              <div className="space-y-4 text-white/60 leading-relaxed">
+                <p>
+                  I'm Rao Ali, a passionate Software Quality Assurance Engineer with 3+ years of experience in manual and automated testing across web and mobile platforms.
+                </p>
+                <p>
+                  I specialize in building robust test automation frameworks using Selenium, Cypress, and Playwright. I work closely with development teams to integrate QA into CI/CD pipelines and ensure every release meets the highest quality standards.
+                </p>
+                <p>
+                  When I'm not writing test scripts, I'm exploring new testing methodologies, contributing to QA communities, and staying up-to-date with the latest tools in the testing ecosystem.
+                </p>
               </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-5 -right-5 bg-[#161616] border border-white/10 rounded-xl px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-                <div className="flex items-center gap-2.5">
-                  <Code size={16} className="text-purple-400" />
+
+              {/* Highlights */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  "Selenium & Cypress Automation",
+                  "API Testing with Postman",
+                  "CI/CD Integration",
+                  "Agile & Scrum Workflows",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2.5 text-sm text-white/70"
+                  >
+                    <CheckCircle size={15} className="text-purple-400 shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Visual card */}
+            <motion.div variants={slideInRight} className="relative">
+              <div className="relative rounded-2xl overflow-hidden border border-white/5 bg-white/[0.02] p-8">
+                {/* Decorative glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-purple-600/10 rounded-full blur-[60px] pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col gap-6">
+                  {/* Avatar placeholder */}
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-3xl font-bold">
+                    RA
+                  </div>
+
                   <div>
-                    <p className="text-xs font-semibold text-white">6+ years</p>
-                    <p className="text-[10px] text-white/40">building for the web</p>
+                    <h3 className="text-xl font-semibold">Rao Ali</h3>
+                    <p className="text-purple-400 text-sm mt-1">SQA Engineer</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: "Experience", value: "3+ Years" },
+                      { label: "Projects", value: "15+" },
+                      { label: "Test Cases", value: "200+" },
+                      { label: "Frameworks", value: "5+" },
+                    ].map((s) => (
+                      <div key={s.label} className="bg-white/5 rounded-xl p-4">
+                        <p className="text-lg font-bold text-white">{s.value}</p>
+                        <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </motion.div>
-
-            {/* Right: copy */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="flex flex-col gap-6"
-            >
-              <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
-                About me
-              </motion.p>
-              <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
-                I build software that feels as good as it works
-              </motion.h2>
-              <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-white/60 leading-relaxed text-pretty">
-                I&apos;m a full-stack developer based in San Francisco with a background in both engineering and visual design. I started writing code at 16, building small tools for my school&apos;s robotics team, and never stopped.
-              </motion.p>
-              <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-white/60 leading-relaxed text-pretty">
-                Today I specialize in React ecosystems and Node.js backends, with a strong focus on developer experience and product quality. I&apos;ve worked at companies like Vercel, Linear, and Framer, shipping features used by hundreds of thousands of people.
-              </motion.p>
-              <motion.div variants={shouldReduceMotion ? undefined : fadeInUp} className="flex flex-wrap gap-2 pt-2">
-                {["San Francisco, CA", "Open to remote", "Full-time or contract"].map((tag) => (
-                  <span key={tag} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/60 font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-              <motion.div variants={shouldReduceMotion ? undefined : fadeInUp}>
-                <a
-                  href="/resume.pdf"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors duration-200 group"
-                >
-                  Download resume
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
-                </a>
-              </motion.div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── SKILLS ───────────────────────────────────────────────────────── */}
-      <section id="skills" className="py-24 md:py-32 px-6">
+      <section id="skills" className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-4 mb-16 max-w-xl"
           >
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
-              Skills
-            </motion.p>
-            <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
-              Tools I reach for every day
-            </motion.h2>
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-white/50 leading-relaxed">
-              A curated set of technologies I&apos;ve used in production, chosen for reliability, developer experience, and long-term maintainability.
-            </motion.p>
-          </motion.div>
+            <motion.div variants={fadeInUp} className="mb-16 text-center">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">
+                Expertise
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                Skills & Tools
+              </h2>
+            </motion.div>
 
-          <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-          >
-            {skills.map((skill) => (
-              <motion.div
-                key={skill.category}
-                variants={shouldReduceMotion ? undefined : scaleIn}
-                whileHover={shouldReduceMotion ? undefined : { y: -4, transition: { duration: 0.2 } }}
-                className="bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:bg-white/[0.06] hover:border-purple-500/20 transition-all duration-300 group"
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="text-purple-400 group-hover:scale-110 transition-transform duration-200">
-                    {skill.icon}
-                  </span>
-                  <p className="text-sm font-semibold text-white">{skill.category}</p>
-                </div>
-                <ul className="flex flex-col gap-2">
-                  {skill.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-white/50">
-                      <CheckCircle size={12} className="text-purple-500/60 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {skills.map((skill) => (
+                <motion.div
+                  key={skill.category}
+                  variants={scaleIn}
+                  className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-9 h-9 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400">
+                      {skill.icon}
+                    </div>
+                    <h3 className="font-semibold text-sm">{skill.category}</h3>
+                  </div>
+                  <ul className="flex flex-col gap-2">
+                    {skill.items.map((item) => (
+                      <li
+                        key={item}
+                        className="text-sm text-white/50 flex items-center gap-2"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-purple-500/60 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
-      <section id="projects" className="py-24 md:py-32 px-6 bg-[#0d0d0d]">
+      <section id="projects" className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-4 mb-16 max-w-xl"
           >
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
-              Projects
-            </motion.p>
-            <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
-              Things I&apos;ve built
-            </motion.h2>
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-white/50 leading-relaxed">
-              A selection of projects ranging from open-source libraries to production SaaS products.
-            </motion.p>
-          </motion.div>
+            <motion.div variants={fadeInUp} className="mb-16 text-center">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">
+                Portfolio
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                Selected Projects
+              </h2>
+            </motion.div>
 
-          {/* Featured projects — large */}
-          <div className="flex flex-col gap-6 mb-6">
-            {projects.filter((p) => p.featured).map((project, i) => (
-              <motion.div
-                key={project.title}
-                variants={shouldReduceMotion ? undefined : (i % 2 === 0 ? slideInLeft : slideInRight)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-white/8 bg-white/[0.02] hover:border-purple-500/20 transition-all duration-300 group ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
-              >
-                {/* Image */}
-                <div className="relative h-56 lg:h-auto overflow-hidden lg:[direction:ltr]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d]/60 to-transparent" />
-                </div>
-                {/* Copy */}
-                <div className="p-8 flex flex-col justify-center gap-4 lg:[direction:ltr]">
-                  <p className="text-xs font-semibold tracking-widest uppercase text-purple-400">Featured project</p>
-                  <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium">
-                        {tag}
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {projects.map((project) => (
+                <motion.article
+                  key={project.title}
+                  variants={fadeInUp}
+                  className="group relative rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-purple-500/30 transition-all duration-300"
+                >
+                  {/* Image */}
+                  <div className="relative h-52 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src =
+                          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                    {project.featured && (
+                      <span className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-medium">
+                        Featured
                       </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 pt-1">
-                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-white/50 hover:text-white transition-colors duration-200">
-                      <Github size={15} /> Code
-                    </a>
-                    {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-white/50 hover:text-purple-400 transition-colors duration-200">
-                        <ExternalLink size={15} /> Live demo
-                      </a>
                     )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Other projects — smaller grid */}
-          <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-          >
-            {projects.filter((p) => !p.featured).map((project) => (
-              <motion.div
-                key={project.title}
-                variants={shouldReduceMotion ? undefined : scaleIn}
-                whileHover={shouldReduceMotion ? undefined : { y: -4, transition: { duration: 0.2 } }}
-                className="bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden hover:border-purple-500/20 transition-all duration-300 group"
-              >
-                <div className="h-40 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                </div>
-                <div className="p-5 flex flex-col gap-3">
-                  <h3 className="text-base font-bold text-white">{project.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 pt-1">
-                    <a href={project.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-white/40 hover:text-white transition-colors duration-200">
-                      <Github size={13} /> Code
-                    </a>
-                    {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-white/40 hover:text-purple-400 transition-colors duration-200">
-                        <ExternalLink size={13} /> Live
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-lg bg-white/5 text-white/50 text-xs font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex items-center gap-4">
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-purple-400 transition-colors duration-200"
+                      >
+                        <Github size={15} />
+                        Code
                       </a>
-                    )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-purple-400 transition-colors duration-200"
+                        >
+                          <ExternalLink size={15} />
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.article>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ── EXPERIENCE ───────────────────────────────────────────────────── */}
-      <section id="experience" className="py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="experience" className="py-24 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-4 mb-16 max-w-xl"
           >
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
-              Experience
-            </motion.p>
-            <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
-              Where I&apos;ve worked
-            </motion.h2>
-          </motion.div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/40 via-purple-500/20 to-transparent ml-[7px] hidden md:block" />
-
-            <motion.div
-              variants={shouldReduceMotion ? undefined : staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="flex flex-col gap-10"
-            >
-              {experience.map((job, i) => (
-                <motion.div
-                  key={job.company}
-                  variants={shouldReduceMotion ? undefined : fadeInUp}
-                  className="md:pl-10 relative"
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full bg-purple-500 border-2 border-[#0a0a0a] shadow-[0_0_12px_rgba(147,51,234,0.6)] hidden md:block" />
-
-                  <div className="bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:bg-white/[0.05] hover:border-purple-500/15 transition-all duration-300">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                      <div>
-                        <h3 className="text-base font-bold text-white">{job.role}</h3>
-                        <p className="text-purple-400 text-sm font-medium">{job.company}</p>
-                      </div>
-                      <span className="flex items-center gap-1.5 text-xs text-white/35 font-medium shrink-0">
-                        <Calendar size={12} />
-                        {job.period}
-                      </span>
-                    </div>
-                    <p className="text-white/55 text-sm leading-relaxed mb-4">{job.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {job.highlights.map((h) => (
-                        <span key={h} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/8 text-xs text-white/50">
-                          <Activity size={10} className="text-purple-500/60" />
-                          {h}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+            <motion.div variants={fadeInUp} className="mb-16 text-center">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">
+                Career
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                Experience
+              </h2>
             </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 px-6 bg-[#0d0d0d]">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col gap-4 mb-16 max-w-xl"
-          >
-            <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
-              Testimonials
-            </motion.p>
-            <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
-              What people say
-            </motion.h2>
-          </motion.div>
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/50 via-purple-500/20 to-transparent ml-[7px] hidden sm:block" />
 
-          <motion.div
-            variants={shouldReduceMotion ? undefined : staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-5"
-          >
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.author}
-                variants={shouldReduceMotion ? undefined : scaleIn}
-                whileHover={shouldReduceMotion ? undefined : { y: -4, transition: { duration: 0.2 } }}
-                className={`bg-white/[0.03] border border-white/8 rounded-2xl p-6 flex flex-col gap-5 hover:border-purple-500/20 transition-all duration-300 ${i === 1 ? "md:mt-6" : ""}`}
-              >
-                <div className="flex gap-0.5">
-                  {[0, 1, 2, 3, 4].map((s) => (
-                    <Star key={s} size={13} className="text-purple-400 fill-purple-400" />
-                  ))}
-                </div>
-                <p className="text-white/65 text-sm leading-relaxed flex-1">&ldquo;{t.quote}&rdquo;</p>
-                <div className="flex items-center gap-3 pt-2 border-t border-white/5">
-                  <div className="w-9 h-9 rounded-full overflow-hidden bg-purple-500/20 border border-white/10 shrink-0">
-                    <img
-                      src={t.avatar}
-                      alt={t.author}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.author}</p>
-                    <p className="text-xs text-white/40">{t.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+              <div className="flex flex-col gap-12">
+                {experience.map((exp, i) => (
+                  <motion.div
+                    key={exp.company}
+                    variants={fadeInUp}
+                    className="relative sm:pl-10"
+                  >
+                    {/* Dot */}
+                    <div className="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-purple-500 bg-[#0a0a0a] hidden sm:block" />
+
+                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-purple-500/20 transition-all duration-300">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                        <div>
+                          <h3 className="text-lg font-semibold">{exp.role}</h3>
+                          <p className="text-purple-400 text-sm font-medium">{exp.company}</p>
+                        </div>
+                        <span className="text-xs text-white/30 font-mono shrink-0 mt-0.5">
+                          {exp.period}
+                        </span>
+                      </div>
+
+                      <p className="text-sm text-white/50 leading-relaxed mb-4">
+                        {exp.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {exp.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ── CONTACT ──────────────────────────────────────────────────────── */}
-      <section id="contact" className="py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left: copy */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              className="flex flex-col gap-6"
-            >
-              <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-xs font-semibold tracking-widest uppercase text-purple-400">
+      <section id="contact" className="py-24 px-6 border-t border-white/5">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <motion.div variants={fadeInUp} className="mb-12 text-center">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">
                 Contact
-              </motion.p>
-              <motion.h2 variants={shouldReduceMotion ? undefined : fadeInUp} className="text-3xl md:text-4xl font-bold tracking-tight">
-                Let&apos;s build something together
-              </motion.h2>
-              <motion.p variants={shouldReduceMotion ? undefined : fadeInUp} className="text-white/55 leading-relaxed text-pretty">
-                I&apos;m currently open to full-time roles and select freelance projects. Whether you have a product idea, need a technical partner, or just want to say hello, my inbox is open.
-              </motion.p>
-              <motion.div variants={shouldReduceMotion ? undefined : fadeInUp} className="flex flex-col gap-3 pt-2">
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-sm text-white/50 hover:text-purple-400 transition-colors duration-200 group"
-                  >
-                    <span className="w-8 h-8 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-white/30 group-hover:text-purple-400 group-hover:border-purple-500/30 transition-all duration-200">
-                      {iconMap[s.icon]}
-                    </span>
-                    {s.label}
-                  </a>
-                ))}
-              </motion.div>
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+                Let's Work Together
+              </h2>
+              <p className="text-white/50 leading-relaxed">
+                Have a project that needs quality assurance? Looking for a dedicated SQA engineer to join your team? I'd love to hear from you.
+              </p>
             </motion.div>
 
-            {/* Right: form */}
-            <motion.div
-              variants={shouldReduceMotion ? undefined : slideInRight}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-            >
+            <motion.div variants={fadeInUp}>
               {submitted ? (
-                <div className="bg-white/[0.03] border border-purple-500/20 rounded-2xl p-10 flex flex-col items-center gap-4 text-center">
-                  <div className="w-12 h-12 rounded-full bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
-                    <CheckCircle size={22} className="text-purple-400" />
+                <div className="text-center py-16">
+                  <div className="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle size={28} className="text-purple-400" />
                   </div>
-                  <h3 className="text-lg font-bold text-white">Message sent</h3>
-                  <p className="text-white/50 text-sm">Thanks for reaching out. I&apos;ll get back to you within 24 hours.</p>
-                  <button
-                    onClick={() => { setSubmitted(false); setForm({ name: "", email: "", message: "" }); }}
-                    className="mt-2 text-sm text-purple-400 hover:text-purple-300 transition-colors duration-200"
-                  >
-                    Send another message
-                  </button>
+                  <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                  <p className="text-white/50 text-sm">
+                    Thanks for reaching out. I'll get back to you soon.
+                  </p>
                 </div>
               ) : (
                 <form
+                  ref={formRef}
                   onSubmit={handleSubmit}
-                  className="bg-white/[0.03] border border-white/8 rounded-2xl p-8 flex flex-col gap-5"
+                  className="flex flex-col gap-5"
                 >
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Your name"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-medium text-white/40 uppercase tracking-wider">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formState.name}
+                        onChange={(e) =>
+                          setFormState((s) => ({ ...s, name: e.target.value }))
+                        }
+                        placeholder="Your name"
+                        className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-purple-500/5 transition-all duration-200"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-medium text-white/40 uppercase tracking-wider">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formState.email}
+                        onChange={(e) =>
+                          setFormState((s) => ({ ...s, email: e.target.value }))
+                        }
+                        placeholder="your@email.com"
+                        className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-purple-500/5 transition-all duration-200"
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-xs font-semibold text-white/40 uppercase tracking-wider">
+
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-white/40 uppercase tracking-wider">
                       Message
                     </label>
                     <textarea
-                      id="message"
-                      name="message"
                       required
                       rows={5}
-                      value={form.message}
-                      onChange={handleChange}
+                      value={formState.message}
+                      onChange={(e) =>
+                        setFormState((s) => ({ ...s, message: e.target.value }))
+                      }
                       placeholder="Tell me about your project..."
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200 resize-none"
+                      className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-purple-500/5 transition-all duration-200 resize-none"
                     />
                   </div>
-                  <motion.button
+
+                  <button
                     type="submit"
-                    whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
-                    whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-                    className="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.25)] hover:shadow-[0_0_28px_rgba(147,51,234,0.4)] flex items-center justify-center gap-2"
+                    className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-purple-900/30"
                   >
-                    Send message
-                    <ArrowRight size={15} />
-                  </motion.button>
+                    Send Message
+                    <ArrowRight
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform duration-200"
+                    />
+                  </button>
                 </form>
               )}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>

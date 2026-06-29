@@ -12,15 +12,15 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Rivera — Creative Developer",
+  title: "Rao Ali — SQA Engineer",
   description:
-    "Full-stack developer and creative technologist crafting digital experiences that live at the intersection of design and engineering.",
-  keywords: ["developer", "portfolio", "full-stack", "creative", "React", "Next.js"],
+    "Software Quality Assurance Engineer specializing in test automation, manual testing, and quality engineering to deliver bug-free digital products.",
+  keywords: ["SQA", "QA Engineer", "Test Automation", "Software Testing", "Selenium", "Cypress", "portfolio"],
   authors: [{ name: "Rao Ali" }],
   openGraph: {
-    title: "Alex Rivera — Creative Developer",
+    title: "Rao Ali — SQA Engineer",
     description:
-      "Full-stack developer and creative technologist crafting digital experiences.",
+      "Software Quality Assurance Engineer specializing in test automation, manual testing, and quality engineering to deliver bug-free digital products.",
     type: "website",
   },
 };
