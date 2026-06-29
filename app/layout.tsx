@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Full-stack developer and creative technologist crafting digital experiences that live at the intersection of design and engineering.",
   keywords: ["developer", "portfolio", "full-stack", "creative", "React", "Next.js"],
-  authors: [{ name: "Alex Rivera" }],
+  authors: [{ name: "Rao Ali" }],
   openGraph: {
     title: "Alex Rivera — Creative Developer",
     description:

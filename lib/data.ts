@@ -9,7 +9,7 @@ export type SocialLink = {
   icon: string;
 };
 
-export const APP_NAME = "Alex Rivera";
+export const APP_NAME = "Rao Ali";
 export const APP_TAGLINE = "Creative Developer";
 export const APP_DESCRIPTION =
   "Full-stack developer crafting digital experiences at the intersection of design and engineering.";
