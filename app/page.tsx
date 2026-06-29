@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, Code2 as Github, Briefcase as Linkedin, MessageCircle as Twitter, Mail, ExternalLink, Code, Layers, Zap, Star, CheckCircle, Terminal, Globe, Sparkles, ArrowDown, User, Calendar, Activity } from 'lucide-react';
@@ -259,7 +259,7 @@ export default function HomePage() {
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-purple-500/30 to-indigo-500/20 blur-sm" />
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]">
                   <img
-                    src="https://media.licdn.com/dms/image/v2/D4E03AQGu9lpcArTPyg/profile-displayphoto-scale_200_200/B4EZtrngOMKkAY-/0/1767037076807?e=2147483647&v=beta&t=g55DujymyuQdQJW6k4Inxt2b3VY0pX_lyKk3Y3x8Aq4"
+                    src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/eec126c0-fca6-47ac-ae1a-92114c9f4a62/images/uploaded-1782735678972-ahyzsl.png?v=1782735679010"
                     alt="Alex Rivera, Creative Developer"
                     className="w-full h-full object-cover"
                     onError={(e) => {
