@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Software Quality Assurance Engineer specializing in test automation, manual testing, and quality engineering to deliver bug-free digital products.",
   keywords: ["SQA", "QA Engineer", "Test Automation", "Software Testing", "Selenium", "Cypress", "portfolio"],
-  authors: [{ name: "Rana Asad" }],
+  authors: [{ name: "Rao Ali" }],
   openGraph: {
     title: "Rao Ali — SQA Engineer",
     description:

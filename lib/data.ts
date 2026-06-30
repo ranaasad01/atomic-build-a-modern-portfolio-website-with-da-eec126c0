@@ -9,7 +9,7 @@ export type SocialLink = {
   icon: string;
 };
 
-export const APP_NAME = "Rana Asad";
+export const APP_NAME = "Rao Ali";
 export const APP_TAGLINE = "SQA Engineer";
 export const APP_DESCRIPTION =
   "Software Quality Assurance Engineer ensuring flawless digital products through rigorous testing, automation, and quality-driven engineering practices.";
