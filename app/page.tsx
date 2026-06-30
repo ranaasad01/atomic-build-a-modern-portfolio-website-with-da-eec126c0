@@ -227,9 +227,7 @@ export default function Home() {
           >
             {/* Left: Text content */}
             <motion.div variants={slideInLeft}>
-              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">
-                About Me
-              </p>
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">Software Quality Assurance Engineer applying modern testing techniques with a clear understanding of the software development lifecycle. Experienced in functional, regression, usability, compatibility, and exploratory testing, using tools like Postman and JMeter to validate performance and quality. 466518876</p>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
                 Quality-first mindset,
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400"> every release.</span>
