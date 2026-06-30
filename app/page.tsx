@@ -77,546 +77,575 @@ const experience = [
     location: 'Lahore, Pakistan',
     description: 'Core QA contributor collaborating with developers and product stakeholders throughout the SDLC.',
     bullets: [
-      'Performed API testing to validate request/response behavior, data integrity, and error handling using Postman.',
-      'Conducted manual functional, regression, exploratory, usability, and compatibility testing across web, desktop, and admin panel modules.',
-      'Executed cross-platform desktop app testing on macOS, Linux, and Windows.',
-      'Tested Stripe payment flows, KYC verification, OTP authentication, and role-based access control.',
-      'Validated real-time buyer-seller chat, large file uploads, and cloud imports (Google Drive, OneDrive).',
-      'Implemented Playwright automation for critical user flows and regression suites.',
-      'Tracked and reported bugs using ClickUp; collaborated in Agile/Scrum ceremonies.',
-    ],
-  },
-  {
-    role: 'BS Computer Science',
-    company: 'University of Lahore',
-    period: '2021 – 2025',
-    location: 'Lahore, Pakistan',
-    description: 'Graduated with a focus on software engineering, databases, and web technologies.',
-    bullets: [
-      'Studied core CS fundamentals: algorithms, data structures, OOP, and databases.',
-      'Completed coursework in software engineering, web development, and network security.',
-      'Final year project involved building and testing a full-stack web application.',
+      'Performed API testing using Postman to validate endpoints, data integrity, and error handling',
+      'Conducted manual functional, regression, and exploratory testing across web and desktop platforms',
+      'Executed cross-browser and cross-platform compatibility testing (macOS, Linux, Windows)',
+      'Implemented Playwright automation scripts for critical user flows and regression coverage',
+      'Tracked and documented bugs in ClickUp with detailed reproduction steps and severity ratings',
+      'Collaborated in Agile/Scrum sprints, participating in daily standups and sprint reviews',
     ],
   },
 ];
 
-// ─── Contact form state type ─────────────────────────────────────────────────
-type FormState = { name: string; email: string; message: string };
-type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
+const iconMap: Record<string, React.ReactNode> = {
+  Github: <Github size={18} />,
+  Linkedin: <Linkedin size={18} />,
+  Twitter: <Twitter size={18} />,
+  Mail: <Mail size={18} />,
+};
 
-// ─── Section wrapper ─────────────────────────────────────────────────────────
-function Section({ id, children, className = '' }: { id?: string; children: React.ReactNode; className?: string }) {
-  return (
-    <section id={id} className={`py-24 px-6 max-w-6xl mx-auto ${className}`}>
-      {children}
-    </section>
-  );
-}
+// ─── SQA Test Logs ──────────────────────────────────────────────────────────
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-3 mb-4">
-      <span className="h-px w-8 bg-purple-500" />
-      <span className="text-xs font-semibold tracking-widest uppercase text-purple-400">{children}</span>
-    </div>
-  );
-}
+const TEST_LOGS = [
+  '[INIT]  Launching SQA Automation Suite v2.4.1...',
+  '[PASS]  UI Responsiveness verified across breakpoints',
+  '[PASS]  API endpoint integrity checks passed (12/12)',
+  '[PASS]  Cross-browser compatibility confirmed',
+  '[PASS]  Accessibility audit score: 98/100',
+];
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">{children}</h2>
-  );
-}
+// ─── Component ──────────────────────────────────────────────────────────────
 
-// ─── Page ────────────────────────────────────────────────────────────────────
-export default function HomePage() {
-  const shouldReduceMotion = useReducedMotion();
-  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<FormStatus>('idle');
+export default function Home() {
+  const prefersReducedMotion = useReducedMotion();
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // Contact form state
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  // SQA test run state
+  const [testRunning, setTestRunning] = useState(false);
+  const [testLines, setTestLines] = useState<string[]>([]);
+  const [testDone, setTestDone] = useState(false);
+  const [consoleOpen, setConsoleOpen] = useState(false);
+
+  async function handleTestRun() {
+    if (testRunning || testDone) {
+      // Reset
+      setTestRunning(false);
+      setTestDone(false);
+      setTestLines([]);
+      setConsoleOpen(false);
+      return;
+    }
+    setTestRunning(true);
+    setConsoleOpen(true);
+    setTestLines([]);
+    setTestDone(false);
+
+    for (let i = 0; i < TEST_LOGS.length; i++) {
+      await new Promise<void>((resolve) => setTimeout(resolve, i === 0 ? 300 : 480));
+      setTestLines((prev) => [...prev, TEST_LOGS[i]]);
+    }
+
+    await new Promise<void>((resolve) => setTimeout(resolve, 400));
+    setTestRunning(false);
+    setTestDone(true);
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('sending');
-    await new Promise(r => setTimeout(r, 1200));
-    setStatus('sent');
+    setFormStatus('sending');
+    await new Promise((r) => setTimeout(r, 1400));
+    setFormStatus('sent');
   }
 
+  const motionProps = (variants: Variants) =>
+    prefersReducedMotion ? {} : { variants };
+
   return (
-    <main className="relative overflow-x-hidden">
-      {/* ── Background ambient glows ── */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[120px]" />
-      </div>
+    <main className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
 
-      {/* ══════════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-6xl mx-auto">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="max-w-3xl"
-        >
-          {/* Badge */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-medium tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              Available for opportunities
-            </span>
-          </motion.div>
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden">
+        {/* Background blobs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/5 rounded-full blur-3xl" />
+        </div>
 
-          {/* Headline */}
-          <motion.h1
-            variants={fadeInUp}
-            className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
-          >
-            <span className="text-white">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              {APP_NAME}
-            </span>
-          </motion.h1>
-
-          {/* Tagline */}
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl md:text-2xl font-medium text-white/60 mb-4"
-          >
-            {APP_TAGLINE} — Ensuring quality at every layer.
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            variants={fadeInUp}
-            className="text-base md:text-lg text-white/40 leading-relaxed max-w-2xl mb-10"
-          >
-            {APP_DESCRIPTION}
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 mb-16">
-            <Link
-              href={CTA_PRIMARY.href}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 hover:-translate-y-0.5"
-            >
-              {CTA_PRIMARY.label}
-              <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 hover:border-purple-500/40 text-white/70 hover:text-white font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5"
-            >
-              Get in touch
-            </Link>
-          </motion.div>
-
-          {/* Social links */}
-          <motion.div variants={fadeInUp} className="flex items-center gap-4">
-            {socialLinks.map(s => (
-              <a
-                key={s.label}
-                href={s.href}
-                target={s.href.startsWith('mailto') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg border border-white/10 hover:border-purple-500/40 flex items-center justify-center text-white/40 hover:text-purple-400 transition-all duration-200 hover:-translate-y-0.5"
-                aria-label={s.label}
-              >
-                {s.icon === 'Github' && <Github size={18} />}
-                {s.icon === 'Linkedin' && <Linkedin size={18} />}
-                {s.icon === 'Mail' && <Mail size={18} />}
-              </a>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20"
-        >
-          <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <div className="relative max-w-6xl mx-auto w-full">
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
           >
-            <ArrowDown size={16} />
+            {/* Badge */}
+            <motion.div variants={fadeInUp} className="mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                Available for opportunities
+              </span>
+            </motion.div>
+
+            {/* Heading */}
+            <motion.h1
+              variants={fadeInUp}
+              className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
+            >
+              <span className="text-white">{APP_NAME}</span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-300 bg-clip-text text-transparent">
+                {APP_TAGLINE}
+              </span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              variants={fadeInUp}
+              className="text-lg text-white/60 leading-relaxed mb-10 max-w-2xl"
+            >
+              {APP_DESCRIPTION}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={fadeInUp} className="flex flex-wrap items-start gap-4 mb-12">
+              {/* ── SQA Test Run CTA ── */}
+              <div className="flex flex-col items-start gap-0">
+                <button
+                  onClick={handleTestRun}
+                  disabled={testRunning}
+                  className={`group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 overflow-hidden ${
+                    testDone
+                      ? 'bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/10'
+                      : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.03]'
+                  } disabled:opacity-80 disabled:cursor-not-allowed disabled:scale-100`}
+                >
+                  {testRunning ? (
+                    <>
+                      <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Running Tests...
+                    </>
+                  ) : testDone ? (
+                    <>
+                      <CheckCircle size={16} className="text-green-400" />
+                      Run Again
+                    </>
+                  ) : (
+                    <>
+                      <Terminal size={16} className="transition-transform duration-200 group-hover:rotate-6" />
+                      Run Test Suite
+                      <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                    </>
+                  )}
+                </button>
+
+                {/* Terminal Console */}
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={consoleOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="overflow-hidden w-full max-w-sm mt-3"
+                >
+                  <div className="bg-[#0d0d0d] border border-white/10 rounded-xl shadow-2xl shadow-black/60 font-mono text-xs">
+                    {/* Terminal title bar */}
+                    <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+                      <span className="ml-2 text-white/30 text-[10px] tracking-widest uppercase">sqa-runner</span>
+                    </div>
+                    {/* Log lines */}
+                    <div className="px-4 py-3 space-y-1.5 min-h-[60px]">
+                      {testLines.map((line, i) => (
+                        <motion.p
+                          key={i}
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className={`leading-relaxed ${
+                            line.startsWith('[PASS]')
+                              ? 'text-green-400'
+                              : line.startsWith('[INIT]')
+                              ? 'text-purple-400'
+                              : line.startsWith('[FAIL]')
+                              ? 'text-red-400'
+                              : 'text-white/60'
+                          }`}
+                        >
+                          {line}
+                        </motion.p>
+                      ))}
+                      {testRunning && (
+                        <motion.span
+                          animate={{ opacity: [1, 0, 1] }}
+                          transition={{ repeat: Infinity, duration: 0.8 }}
+                          className="inline-block w-2 h-3.5 bg-purple-400 rounded-sm align-middle"
+                        />
+                      )}
+                    </div>
+                    {/* SUCCESS badge */}
+                    {testDone && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.35, ease: 'easeOut' }}
+                        className="mx-4 mb-4 mt-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30"
+                        style={{ boxShadow: '0 0 16px 2px rgba(34,197,94,0.18)' }}
+                      >
+                        <CheckCircle size={14} className="text-green-400" />
+                        <span className="text-green-400 font-semibold tracking-widest uppercase text-[11px]">All Tests Passed — SUCCESS</span>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Secondary CTA */}
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm border border-white/10 text-white/70 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-300"
+              >
+                <Mail size={16} />
+                Get In Touch
+              </Link>
+            </motion.div>
+
+            {/* Social links */}
+            <motion.div variants={fadeInUp} className="flex items-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target={social.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors duration-200 group"
+                >
+                  <span className="group-hover:scale-110 transition-transform duration-200">
+                    {iconMap[social.icon]}
+                  </span>
+                  <span className="hidden sm:inline">{social.label}</span>
+                </a>
+              ))}
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute bottom-8 left-0 flex items-center gap-2 text-white/20 text-xs tracking-widest uppercase"
+          >
+            <ArrowDown size={14} className="animate-bounce" />
+            Scroll
+          </motion.div>
+        </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          ABOUT
-      ══════════════════════════════════════════════ */}
-      <Section id="about">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid md:grid-cols-2 gap-16 items-center"
-        >
-          {/* Text */}
-          <motion.div variants={slideInLeft}>
-            <SectionLabel>About Me</SectionLabel>
-            <SectionTitle>Passionate about quality-driven development</SectionTitle>
-            <div className="space-y-4 text-white/50 leading-relaxed">
-              <p>
-                I'm a Software Quality Assurance Engineer at <span className="text-purple-400 font-medium">DaticsAI</span>, where I ensure every release meets the highest standards of reliability and user experience.
-              </p>
-              <p>
-                My expertise spans manual testing, API validation with Postman, test automation with Playwright, and performance testing with JMeter. I thrive in Agile environments and collaborate closely with developers and product teams.
-              </p>
-              <p>
-                I hold a BS in Computer Science from the University of Lahore (2021–2025), which gave me a strong foundation in software engineering, databases, and web technologies.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {['Manual Testing', 'Playwright', 'Postman', 'JMeter', 'Agile/Scrum'].map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-medium">
-                  {tag}
-                </span>
+      {/* ── ABOUT ────────────────────────────────────────────────────────── */}
+      <section id="about" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          >
+            <motion.div variants={slideInLeft}>
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-4">About Me</p>
+              <h2 className="text-4xl font-bold tracking-tight mb-6">
+                Quality is not an act,<br />
+                <span className="text-white/40">it's a habit.</span>
+              </h2>
+              <div className="space-y-4 text-white/60 leading-relaxed">
+                <p>
+                  I'm <span className="text-white font-medium">Rao Muhammad Ali</span>, a Software Quality Assurance Engineer at DaticsAI with hands-on experience across the full testing spectrum — from manual exploratory testing to automated regression suites.
+                </p>
+                <p>
+                  My toolkit spans <span className="text-purple-400">Playwright</span>, <span className="text-purple-400">Postman</span>, <span className="text-purple-400">JMeter</span>, and <span className="text-purple-400">Selenium</span>, with a strong foundation in Agile/Scrum workflows and cross-functional collaboration.
+                </p>
+                <p>
+                  I believe great software is built on a culture of quality — catching bugs early, communicating clearly, and continuously improving processes.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <div className="flex items-center gap-2 text-sm text-white/50">
+                  <User size={14} className="text-purple-400" />
+                  Lahore, Pakistan
+                </div>
+                <div className="flex items-center gap-2 text-sm text-white/50">
+                  <Briefcase size={14} className="text-purple-400" />
+                  DaticsAI
+                </div>
+                <div className="flex items-center gap-2 text-sm text-white/50">
+                  <Calendar size={14} className="text-purple-400" />
+                  Since Oct 2025
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={slideInRight} className="relative">
+              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-purple-900/20 to-indigo-900/20 border border-white/5 p-8">
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: 'Test Cases Written', value: '500+', icon: <CheckCircle size={20} className="text-purple-400" /> },
+                    { label: 'Bugs Reported', value: '200+', icon: <Activity size={20} className="text-indigo-400" /> },
+                    { label: 'Automation Scripts', value: '50+', icon: <Terminal size={20} className="text-purple-400" /> },
+                    { label: 'Projects Tested', value: '10+', icon: <Layers size={20} className="text-indigo-400" /> },
+                  ].map((stat) => (
+                    <div key={stat.label} className="bg-white/5 rounded-xl p-4 border border-white/5">
+                      <div className="mb-2">{stat.icon}</div>
+                      <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                      <div className="text-xs text-white/40">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── SKILLS ───────────────────────────────────────────────────────── */}
+      <section id="skills" className="py-24 px-6 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <motion.div variants={fadeInUp} className="mb-12">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">Skills & Stack</p>
+              <h2 className="text-4xl font-bold tracking-tight">Tools of the Trade</h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skills.map((skill) => (
+                <TiltCard key={skill.category}>
+                  <motion.div
+                    variants={scaleIn}
+                    className="h-full bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-purple-500/30 transition-colors duration-300"
+                  >
+                    <div className="text-purple-400 mb-4">{skill.icon}</div>
+                    <h3 className="font-semibold text-white mb-3 text-sm">{skill.category}</h3>
+                    <ul className="space-y-1.5">
+                      {skill.items.map((item) => (
+                        <li key={item} className="text-xs text-white/50 flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-purple-400/60" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </TiltCard>
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Visual card */}
-          <motion.div variants={slideInRight} className="relative">
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/5" />
-              <div className="relative z-10 space-y-6">
-                {[
-                  { label: 'Current Role', value: 'SQA Engineer @ DaticsAI', icon: <Briefcase /> },
-                  { label: 'Location', value: 'Lahore, Pakistan', icon: <Globe size={16} /> },
-                  { label: 'Education', value: 'BS CS — University of Lahore', icon: <User size={16} /> },
-                  { label: 'Focus', value: 'Web, Desktop & API Testing', icon: <Star size={16} /> },
-                ].map(item => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <span className="mt-0.5 text-purple-400">{item.icon}</span>
-                    <div>
-                      <p className="text-xs text-white/30 uppercase tracking-wider">{item.label}</p>
-                      <p className="text-sm text-white/80 font-medium">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </Section>
-
-      {/* ══════════════════════════════════════════════
-          SKILLS
-      ══════════════════════════════════════════════ */}
-      <Section id="skills" className="border-t border-white/5">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <motion.div variants={fadeInUp} className="mb-12">
-            <SectionLabel>Skills</SectionLabel>
-            <SectionTitle>Tech stack & expertise</SectionTitle>
-            <p className="text-white/40 max-w-xl">
-              A comprehensive toolkit built through hands-on experience across diverse testing disciplines.
-            </p>
-          </motion.div>
-
+      {/* ── PROJECTS ─────────────────────────────────────────────────────── */}
+      <section id="projects" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
           >
-            {skills.map((skill) => (
-              <motion.div
-                key={skill.category}
-                variants={scaleIn}
-                className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all duration-300 hover:bg-white/[0.07]"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-purple-400">{skill.icon}</span>
-                  <h3 className="text-sm font-semibold text-white">{skill.category}</h3>
-                </div>
-                <ul className="space-y-2">
-                  {skill.items.map(item => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-white/50">
-                      <span className="w-1 h-1 rounded-full bg-purple-500/60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </Section>
+            <motion.div variants={fadeInUp} className="mb-12">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">Projects</p>
+              <h2 className="text-4xl font-bold tracking-tight">Selected Work</h2>
+            </motion.div>
 
-      {/* ══════════════════════════════════════════════
-          PROJECTS
-      ══════════════════════════════════════════════ */}
-      <Section id="projects" className="border-t border-white/5">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <motion.div variants={fadeInUp} className="mb-12">
-            <SectionLabel>Projects</SectionLabel>
-            <SectionTitle>QA work & case studies</SectionTitle>
-            <p className="text-white/40 max-w-xl">
-              A selection of projects where I've applied rigorous testing methodologies to ensure product quality.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 gap-6"
-          >
-            {projects.map((project) => (
-              <motion.div key={project.title} variants={scaleIn}>
-                <TiltCard className="group rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all duration-300 overflow-hidden">
-                  {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
-                    {project.featured && (
-                      <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-medium">
-                        <Star size={10} /> Featured
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors duration-200">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-white/50 leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs">
-                          {tag}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.map((project) => (
+                <TiltCard key={project.title}>
+                  <motion.div
+                    variants={fadeInUp}
+                    className="group relative bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300 h-full"
+                  >
+                    {/* Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+                      {project.featured && (
+                        <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[10px] font-medium">
+                          <Star size={10} />
+                          Featured
                         </span>
-                      ))}
+                      )}
                     </div>
 
-                    {/* Links */}
-                    <div className="flex items-center gap-3">
-                      {project.live && (
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="font-semibold text-white mb-2">{project.title}</h3>
+                      <p className="text-sm text-white/50 leading-relaxed mb-4">{project.description}</p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/8 text-white/50 text-[11px]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Links */}
+                      <div className="flex items-center gap-3">
                         <a
-                          href={project.live}
+                          href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-purple-400 hover:text-purple-300 transition-colors duration-200"
+                          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-purple-400 transition-colors duration-200"
                         >
-                          <ExternalLink size={13} /> Live Demo
+                          <Github size={13} />
+                          Code
                         </a>
-                      )}
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-white/40 hover:text-white/70 transition-colors duration-200"
-                      >
-                        <Github size={13} /> View Details
-                      </a>
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-purple-400 transition-colors duration-200"
+                          >
+                            <ExternalLink size={13} />
+                            Live Demo
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </TiltCard>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
-      </Section>
+        </div>
+      </section>
 
-      {/* ══════════════════════════════════════════════
-          EXPERIENCE
-      ══════════════════════════════════════════════ */}
-      <Section id="experience" className="border-t border-white/5">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <motion.div variants={fadeInUp} className="mb-12">
-            <SectionLabel>Experience</SectionLabel>
-            <SectionTitle>Work & education</SectionTitle>
-            <p className="text-white/40 max-w-xl">
-              My professional journey in software quality assurance and academic background.
-            </p>
-          </motion.div>
-
-          <div className="space-y-6">
-            {experience.map((exp, i) => (
-              <motion.div key={exp.company} variants={fadeInUp}>
-                <TiltCard className="relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all duration-300">
-                  {/* Timeline dot */}
-                  <div className="absolute -left-3 top-8 w-6 h-6 rounded-full bg-purple-500/20 border-2 border-purple-500/50 flex items-center justify-center hidden md:flex">
-                    <div className="w-2 h-2 rounded-full bg-purple-400" />
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
-                      <p className="text-purple-400 font-medium text-sm">{exp.company}</p>
-                    </div>
-                    <div className="flex flex-col sm:items-end gap-1 shrink-0">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-white/40">
-                        <Calendar size={12} /> {exp.period}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-xs text-white/30">
-                        <Globe size={12} /> {exp.location}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="text-sm text-white/50 mb-4">{exp.description}</p>
-
-                  <ul className="space-y-2">
-                    {exp.bullets.map((bullet, bi) => (
-                      <li key={bi} className="flex items-start gap-2.5 text-sm text-white/40">
-                        <CheckCircle size={14} className="text-purple-500/60 mt-0.5 shrink-0" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
-
-      {/* ══════════════════════════════════════════════
-          CONTACT
-      ══════════════════════════════════════════════ */}
-      <Section id="contact" className="border-t border-white/5">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="max-w-2xl mx-auto text-center"
-        >
-          <motion.div variants={fadeInUp}>
-            <SectionLabel>Contact</SectionLabel>
-            <SectionTitle>Let's work together</SectionTitle>
-            <p className="text-white/40 mb-10">
-              Have a project that needs quality assurance? I'd love to hear about it. Drop me a message and I'll get back to you shortly.
-            </p>
-          </motion.div>
-
-          <motion.form
-            variants={fadeInUp}
-            onSubmit={handleSubmit}
-            className="space-y-4 text-left"
+      {/* ── EXPERIENCE ───────────────────────────────────────────────────── */}
+      <section id="experience" className="py-24 px-6 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
           >
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-white/40 mb-1.5 uppercase tracking-wider">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Your name"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/[0.07] transition-all duration-200"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-white/40 mb-1.5 uppercase tracking-wider">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/[0.07] transition-all duration-200"
-                />
-              </div>
+            <motion.div variants={fadeInUp} className="mb-12">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">Experience</p>
+              <h2 className="text-4xl font-bold tracking-tight">Work History</h2>
+            </motion.div>
+
+            <div className="space-y-6">
+              {experience.map((exp) => (
+                <TiltCard key={exp.company}>
+                  <motion.div
+                    variants={fadeInUp}
+                    className="bg-white/[0.03] border border-white/8 rounded-2xl p-8 hover:border-purple-500/30 transition-colors duration-300"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
+                        <p className="text-purple-400 font-medium">{exp.company}</p>
+                        <p className="text-sm text-white/40 mt-1">{exp.location}</p>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-white/40 shrink-0">
+                        <Calendar size={13} />
+                        {exp.period}
+                      </div>
+                    </div>
+                    <p className="text-white/60 mb-4">{exp.description}</p>
+                    <ul className="space-y-2">
+                      {exp.bullets.map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-white/50">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400/60 shrink-0" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </TiltCard>
+              ))}
             </div>
-            <div>
-              <label className="block text-xs font-medium text-white/40 mb-1.5 uppercase tracking-wider">Message</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                placeholder="Tell me about your project..."
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/[0.07] transition-all duration-200 resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === 'sending' || status === 'sent'}
-              className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 hover:-translate-y-0.5"
-            >
-              {status === 'idle' && 'Send Message'}
-              {status === 'sending' && 'Sending...'}
-              {status === 'sent' && '✓ Message Sent!'}
-              {status === 'error' && 'Try Again'}
-            </button>
-
-            {status === 'sent' && (
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center text-sm text-purple-400"
-              >
-                Thanks for reaching out! I'll get back to you soon.
-              </motion.p>
-            )}
-          </motion.form>
-
-          {/* Direct contact */}
-          <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-white/5 flex flex-wrap justify-center gap-6">
-            <a
-              href="mailto:raomali005@gmail.com"
-              className="flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors duration-200"
-            >
-              <Mail size={16} /> raomali005@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-white/40 hover:text-purple-400 transition-colors duration-200"
-            >
-              <Linkedin size={16} /> LinkedIn
-            </a>
           </motion.div>
-        </motion.div>
-      </Section>
+        </div>
+      </section>
+
+      {/* ── CONTACT ──────────────────────────────────────────────────────── */}
+      <section id="contact" className="py-24 px-6">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <motion.div variants={fadeInUp} className="mb-12 text-center">
+              <p className="text-xs font-semibold tracking-widest uppercase text-purple-400 mb-3">Contact</p>
+              <h2 className="text-4xl font-bold tracking-tight mb-4">Let's Work Together</h2>
+              <p className="text-white/50">Have a project that needs quality assurance? I'd love to hear about it.</p>
+            </motion.div>
+
+            <motion.form
+              variants={fadeInUp}
+              onSubmit={handleSubmit}
+              className="space-y-5"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-medium text-white/40 mb-2 uppercase tracking-wider">Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-white/40 mb-2 uppercase tracking-wider">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-white/40 mb-2 uppercase tracking-wider">Message</label>
+                <textarea
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 text-sm focus:outline-none focus:border-purple-500/50 focus:bg-white/8 transition-all duration-200 resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={formStatus === 'sending' || formStatus === 'sent'}
+                className="w-full py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-purple-500/20"
+              >
+                {formStatus === 'sending' ? 'Sending...' : formStatus === 'sent' ? '✓ Message Sent!' : 'Send Message'}
+              </button>
+            </motion.form>
+          </motion.div>
+        </div>
+      </section>
+
     </main>
   );
 }
 
-// Small helper used in About section
-function Briefcase() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-    </svg>
-  );
+// ─── Missing icon alias ──────────────────────────────────────────────────────
+function Briefcase({ size }: { size: number }) {
+  return <Linkedin size={size} />;
 }
