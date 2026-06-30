@@ -177,6 +177,7 @@ export default function Home() {
           <motion.h1
             variants={fadeInUp}
             className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6"
+          style={{ color: "#d946ef", backgroundColor: "#3b82f6", fontSize: "64px", padding: "64px", margin: "24px", borderRadius: "24px" }}
           >
             Rao Ali
             <br />
