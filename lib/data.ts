@@ -9,10 +9,10 @@ export type SocialLink = {
   icon: string;
 };
 
-export const APP_NAME = "Rao Ali";
+export const APP_NAME = "Rao Muhammad Ali";
 export const APP_TAGLINE = "SQA Engineer";
 export const APP_DESCRIPTION =
-  "Software Quality Assurance Engineer ensuring flawless digital products through rigorous testing, automation, and quality-driven engineering practices.";
+  "Software Quality Assurance Engineer at DaticsAI, applying modern testing techniques across web, mobile, desktop, and API platforms to deliver smooth, reliable releases.";
 
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
@@ -31,6 +31,5 @@ export const CTA_PRIMARY = {
 export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com", icon: "Github" },
   { label: "LinkedIn", href: "https://linkedin.com", icon: "Linkedin" },
-  { label: "Twitter", href: "https://twitter.com", icon: "Twitter" },
-  { label: "Email", href: "mailto:rao.ali@example.com", icon: "Mail" },
+  { label: "Email", href: "mailto:raomali005@gmail.com", icon: "Mail" },
 ];

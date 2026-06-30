@@ -12,15 +12,15 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Rao Ali — SQA Engineer",
+  title: "Rao Muhammad Ali — SQA Engineer",
   description:
-    "Software Quality Assurance Engineer specializing in test automation, manual testing, and quality engineering to deliver bug-free digital products.",
-  keywords: ["SQA", "QA Engineer", "Test Automation", "Software Testing", "Selenium", "Cypress", "portfolio"],
-  authors: [{ name: "Rao Ali" }],
+    "Software Quality Assurance Engineer at DaticsAI specializing in manual testing, API testing with Postman, test automation with Playwright, and performance testing with JMeter.",
+  keywords: ["SQA", "QA Engineer", "Test Automation", "Playwright", "Postman", "JMeter", "Software Testing", "portfolio"],
+  authors: [{ name: "Rao Muhammad Ali" }],
   openGraph: {
-    title: "Rao Ali — SQA Engineer",
+    title: "Rao Muhammad Ali — SQA Engineer",
     description:
-      "Software Quality Assurance Engineer specializing in test automation, manual testing, and quality engineering to deliver bug-free digital products.",
+      "Software Quality Assurance Engineer at DaticsAI specializing in manual testing, API testing with Postman, test automation with Playwright, and performance testing with JMeter.",
     type: "website",
   },
 };

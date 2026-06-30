@@ -65,7 +65,7 @@ export default function Footer() {
               </p>
             </div>
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
-              Building thoughtful digital products with clean code and sharp design sensibility.
+              Ensuring quality at every layer — from API to UI. SQA Engineer passionate about delivering smooth, reliable software.
             </p>
           </motion.div>
 
@@ -117,15 +117,15 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
           <p className="text-xs text-white/25">
-            &copy; {new Date().getFullYear()} {APP_NAME}. Crafted with care.
+            © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs text-white/30 hover:text-purple-400 transition-colors duration-200 group"
             aria-label="Scroll to top"
+            className="flex items-center gap-2 text-xs text-white/30 hover:text-purple-400 transition-colors duration-200 group"
           >
-            <span>Back to top</span>
-            <span className="p-1 rounded border border-white/10 group-hover:border-purple-500/40 group-hover:bg-purple-500/10 transition-all duration-200">
+            Back to top
+            <span className="w-6 h-6 rounded-full border border-white/10 group-hover:border-purple-500/40 flex items-center justify-center transition-colors duration-200">
               <ArrowUp size={12} />
             </span>
           </button>
